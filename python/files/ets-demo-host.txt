@@ -1,0 +1,15 @@
+ets-core
+la421
+la521
+ets-lp5-sg300
+ets-lp7-sg300
+ets-lp15-sg300
+ets-lp1-sg300
+ets-rt1
+etsoak-rt1
+etsoak-core-sw
+spf-sw1
+spf-sw2
+etsoak-lp14-sg300
+etsoak-lp24-sg300
+etsoak-lp32-sg300

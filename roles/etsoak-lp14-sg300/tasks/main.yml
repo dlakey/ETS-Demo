@@ -1,0 +1,14 @@
+---
+# tasks file for TTI Admin 6509 Switch
+- name: Obtain Login
+  include_vars: pass.yaml
+
+- name: Define TTI Admin 6509 Provider
+  set_fact:
+    provider:
+      host: "{{ inventory_hostname }}"
+      username: "{{ creds['username'] }}"
+      password: "{{ creds['password'] }}"
+      auth_pass: "{{ creds['auth_pass'] }}"
+
+- include: tti-admin-6509-config.yaml

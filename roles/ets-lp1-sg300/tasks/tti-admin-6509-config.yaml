@@ -1,0 +1,16 @@
+  - name: Obtain Login
+    include_vars: pass.yaml
+
+  - name: Define TTI Admin 6509 Provider
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ creds['username'] }}"
+        password: "{{ creds['password'] }}"
+        auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: TT TTI Admin 6509 Config
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      src: "~/Auto-Demo/roles/tti-admin-6509/files/tti-admin-6509.cfg"

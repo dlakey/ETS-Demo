@@ -1,0 +1,6 @@
+---
+creds:
+  username: cisco
+  password: cisco
+  auth_pass: cisco
+  address: 192.168.1.1/30

@@ -1,0 +1,7 @@
+---
+- hosts: ets-lp14-sg300
+  gather_facts: no
+  connection: local
+    
+  roles:
+    - role: ets-lp14-sg300

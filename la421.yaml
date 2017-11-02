@@ -1,0 +1,7 @@
+---
+- hosts: la421
+  gather_facts: no
+  connection: local
+    
+  roles:
+    - role: la421

@@ -1,0 +1,7 @@
+---
+- hosts: etsoak-lp24-sg300
+  gather_facts: no
+  connection: local
+    
+  roles:
+    - role: etsoak-lp24-sg300

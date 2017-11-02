@@ -1,0 +1,7 @@
+---
+- hosts: ets-rt1
+  gather_facts: no
+  connection: local
+    
+  roles:
+    - role: ets-rt1

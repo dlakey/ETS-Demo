@@ -1,0 +1,7 @@
+---
+- hosts: spf-sw1
+  gather_facts: no
+  connection: local
+    
+  roles:
+    - role: spf-sw1

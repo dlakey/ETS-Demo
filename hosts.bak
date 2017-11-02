@@ -13,88 +13,50 @@
 [ets-admin-3850-sw1]
 10.150.100.201
 
-[ets-admin-3850-sw2]
-10.150.100.202
-
-[ets-lp5-sg300]
-10.150.100.203
-
-[ets-lp7-sg300]
-10.150.100.204
-
-[ets-lp15-sg300]
-10.150.100.205
-
-[tti-admin-5548]
+[ets-core]
 172.16.2.10
 
-[tti-bunker-5548]
+[la421]
 172.16.2.11
 
-[tti-admin-6509]
+[la521]
 172.16.2.12
 
-[tti-lp70-sw1]
+[etsoak-core-sw]
+172.16.2.110
+
+[ets-rt1]
 172.16.2.13
 
-[tti-lp41-sw1]
+[etsoak-rt1]
+172.16.2.113
+
+[ets-lp5-sg300]
 172.16.2.14
 
-[tti-lp32-sw1]
-172.16.2.15
+[ets-lp7-sg300]
+1722.16.2.15
 
-[tti-lp5-sw1]
+[ets-lp15-sg300]
 172.16.2.16
 
-[tti-lp7-sw1]
+[ets-lp1-sg300]
 172.16.2.17
 
-[tti-lp10-sw1]
-172.16.2.18
+[spf-sw1]
+172.16.2.111
 
-[tt-dc-rt1]
-172.16.2.21
+[spf-sw2]
+172.16.2.112
 
-[tt-dc-rt2]
-172.16.2.22
+[etsoak-lp14-sg300]
+172.16.2.114
 
-[tt-ny-rt1]
-172.16.2.31
+[etsoak-lp24-sg300]
+172.16.2.115
 
-[tt-chi-rt1]
-172.16.2.32
-
-[tt-la-rt1]
-172.16.2.34
-
-[tt-ny-sw1]
-172.16.2.35
-
-[tt-chi-sw1]
-172.16.2.36
-
-[tt-la-sw1]
-172.16.2.37
-
-[tt-dc-spine1]
-172.16.2.23
-
-[tt-dc-spine2]
-172.16.2.24
-
-[tt-dc-leaf1]
-172.16.2.25
-
-[tt-dc-leaf2]
-172.16.2.26
-
-[tt-dc-leaf3]
-172.16.2.27
-
-[tt-dc-core]
-172.16.2.20
-
-
+[etsoak-lp32-sg300]
+172.16.2.116
 
 [ubuntu]
 vm1 ansible_ssh_host=172.16.145.101 ansible_ssh_user=dlakey ansible_ssh_private_key_file=~/.ssh/known_hosts 

@@ -31,11 +31,14 @@
 [etsoak-rt1]
 172.16.2.113
 
+[ets-lp2-sg300]
+172.16.2.150
+
 [ets-lp5-sg300]
 172.16.2.14
 
 [ets-lp7-sg300]
-1722.16.2.15
+172.16.2.15
 
 [ets-lp15-sg300]
 172.16.2.16
@@ -57,6 +60,12 @@
 
 [etsoak-lp32-sg300]
 172.16.2.116
+
+[etsoak-rt1]
+172.16.2.113
+
+[lp5-camera1]
+172.16.2.205
 
 [ubuntu]
 vm1 ansible_ssh_host=172.16.145.101 ansible_ssh_user=dlakey ansible_ssh_private_key_file=~/.ssh/known_hosts 

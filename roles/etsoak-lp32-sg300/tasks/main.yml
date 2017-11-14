@@ -1,9 +1,9 @@
 ---
-# tasks file for TTI Admin 6509 Switch
+# tasks file for ETSOAK LP32-sg300 Switch
 - name: Obtain Login
   include_vars: pass.yaml
 
-- name: Define TTI Admin 6509 Provider
+- name: Define ETSOAK LP32-sg300 Switch Provider
   set_fact:
     provider:
       host: "{{ inventory_hostname }}"
@@ -11,4 +11,4 @@
       password: "{{ creds['password'] }}"
       auth_pass: "{{ creds['auth_pass'] }}"
 
-- include: tti-admin-6509-config.yaml
+- include: etsoak-lp32-sg300-config.yaml

@@ -1,0 +1,14 @@
+---
+# tasks file for ETS LP2 Switch
+- name: Obtain Login
+  include_vars: pass.yaml
+
+- name: Define ETS LP2 Switch Provider
+  set_fact:
+    provider:
+      host: "{{ inventory_hostname }}"
+      username: "{{ creds['username'] }}"
+      password: "{{ creds['password'] }}"
+      auth_pass: "{{ creds['auth_pass'] }}"
+
+- include: ets-lp2-sg300-config.yaml

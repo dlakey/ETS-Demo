@@ -1,0 +1,61 @@
+
+
+
+etsoak-core-sw:
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 408    fa16.3e25.3bdf    DYNAMIC     Gi0/2
+Total Mac Addresses for this criterion: 1
+
+
+spf-sw1:
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 408    fa16.3e25.3bdf    DYNAMIC     Gi0/2
+Total Mac Addresses for this criterion: 1
+
+
+spf-sw2:
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 408    fa16.3e25.3bdf    DYNAMIC     Gi0/1
+Total Mac Addresses for this criterion: 1
+
+
+etsoak-lp14-sg300:
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 408    fa16.3e25.3bdf    DYNAMIC     Gi0/2
+Total Mac Addresses for this criterion: 1
+
+
+etsoak-lp32-sg300:
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ 408    fa16.3e25.3bdf    DYNAMIC     Gi0/1
+Total Mac Addresses for this criterion: 1
+
+
+etsoak-core-sw:
+
+Internet  192.168.8.121         138   fa16.3e25.3bdf  ARPA   Vlan408

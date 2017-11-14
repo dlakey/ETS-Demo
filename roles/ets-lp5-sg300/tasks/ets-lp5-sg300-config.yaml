@@ -1,0 +1,16 @@
+  - name: Obtain Login
+    include_vars: pass.yaml
+
+  - name: Define ETS LP5 Provider
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ creds['username'] }}"
+        password: "{{ creds['password'] }}"
+        auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: TT ETS LP5 Config
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      src: "~/ETS-Demo/roles/ets-lp5-sg300/files/ets-lp5-sg300.cfg"

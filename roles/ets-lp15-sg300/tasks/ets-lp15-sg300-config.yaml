@@ -1,7 +1,7 @@
   - name: Obtain Login
     include_vars: pass.yaml
 
-  - name: Define TTI Admin 6509 Provider
+  - name: Define ETS LP15 Switch Provider
     set_fact:
       provider:
         host: "{{ inventory_hostname }}"
@@ -9,8 +9,8 @@
         password: "{{ creds['password'] }}"
         auth_pass: "{{ creds['auth_pass'] }}"
 
-  - name: TT TTI Admin 6509 Config
+  - name: TT ETS LP15 Switch Config
     ios_config:
       provider: "{{ provider }}"
       authorize: yes
-      src: "~/Auto-Demo/roles/tti-admin-6509/files/tti-admin-6509.cfg"
+      src: "~/ETS-Demo/roles/ets-lp15-sg300/files/ets-lp15-sg300.cfg"

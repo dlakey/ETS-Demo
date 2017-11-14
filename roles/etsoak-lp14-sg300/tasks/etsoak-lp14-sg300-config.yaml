@@ -1,0 +1,16 @@
+  - name: Obtain Login
+    include_vars: pass.yaml
+
+  - name: Define ETSOAK LP14 Switch Provider
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ creds['username'] }}"
+        password: "{{ creds['password'] }}"
+        auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: ETSOAK LP14 Switch Config
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      src: "~/ETS-Demo/roles/etsoak-lp14-sg300/files/etsoak-lp14-sg300.cfg"

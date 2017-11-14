@@ -32,11 +32,9 @@ dev.send('show run\n')
 time.sleep(3)
 resp = dev.recv(9999)
 counter = 0
+print resp
 with open('../roles/' + host + '/files/' + host + '.cfg', 'w') as f:
 	for line in resp:
-		if counter < 21:
-			counter = counter + 1
-			continue
 		f.write(line)
 
 

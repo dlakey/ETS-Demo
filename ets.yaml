@@ -1,15 +1,16 @@
 ---
 - include: ets-core.yaml
-- include: la421.yamll
+- include: la421.yaml
 - include: la521.yaml
+#- include: ets-lp2-sg300.yaml
 - include: ets-lp5-sg300.yaml
 - include: ets-lp7-sg300.yaml
 - include: ets-lp15-sg300.yaml
-- include: ets-lp1-sg300.yaml
+- include: ets-rt1.yaml
+- include: etsoak-rt1.yaml
+- include: etsoak-core-sw.yaml
 - include: etsoak-lp14-sg300.yaml
 - include: etsoak-lp24-sg300.yaml
 - include: etsoak-lp32-sg300.yaml
-- include: etsoak-core-sw.yaml
 - include: spf-sw1.yaml
 - include: spf-sw2.yaml
-- include: etsoak-rt1.yaml

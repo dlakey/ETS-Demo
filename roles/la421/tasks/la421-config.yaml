@@ -9,8 +9,8 @@
         password: "{{ creds['password'] }}"
         auth_pass: "{{ creds['auth_pass'] }}"
 
-  - name: TT la421 Switch Config
+  - name: la421 Switch Config
     ios_config:
       provider: "{{ provider }}"
       authorize: yes
-      src: "~/Auto-Demo/roles/la421/files/la421.cfg"
+      src: "~/ETS-Demo/roles/la421/files/la421.cfg"

@@ -11,6 +11,7 @@
 
   - name: ETSOAK Router Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/etsoak-rt1/files/etsoak-rt1.cfg"

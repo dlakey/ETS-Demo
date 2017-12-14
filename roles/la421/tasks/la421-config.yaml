@@ -11,6 +11,7 @@
 
   - name: la421 Switch Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/la421/files/la421.cfg"

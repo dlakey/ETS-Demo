@@ -1,0 +1,9 @@
+---
+- name: Windows PowerShell Playbook
+  hosts: window2
+  tasks:
+    - name: Execute PowerShell Script
+      script: www-stop.ps1 universe
+      register: process
+    - debug: var=process
+

@@ -1,0 +1,462 @@
+terminal length 0
+etsoak-rt1#show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.6(2)T, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Tue 22-Mar-16 16:19 by prod_rel_team
+
+
+ROM: Bootstrap program is IOSv
+
+etsoak-rt1 uptime is 1 week, 1 day, 3 hours, 18 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 472321K/50176K bytes of memory.
+Processor board ID 9RLZC4BTPK5GY0VBW80D9
+3 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+0K bytes of ATA CompactFlash 2 (Read/Write)
+10080K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+etsoak-rt1#show run
+Building configuration...
+
+  
+Current configuration : 12132 bytes
+!
+! Last configuration change at 21:33:19 UTC Sat Dec 9 2017 by cisco
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname etsoak-rt1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable password cisco
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+!
+!
+!
+!
+!
+aaa session-id common
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name ets.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$s8DG$YDm8FmlXHSkStub6m//7t0
+!
+redundancy
+!
+no cdp run
+!
+!
+class-map match-any VSL-MGMT-PACKETS
+ match access-group name VSL-MGMT
+class-map match-all AutoQos-4.0-Scavenger-Classify
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any VSL-DATA-PACKETS
+ match any 
+class-map match-all AutoQos-4.0-Signaling-Classify
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-any VSL-L2-CONTROL-PACKETS
+ match access-group name VSL-DOT1x
+ match access-group name VSL-BPDU
+ match access-group name VSL-CDP
+ match access-group name VSL-LLDP
+ match access-group name VSL-SSTP
+ match access-group name VSL-GARP
+class-map match-any AutoQos-4.0-Priority-Queue
+ match cos  5 
+ match dscp ef 
+ match dscp cs5 
+ match dscp cs4 
+class-map match-any VSL-L3-CONTROL-PACKETS
+ match access-group name VSL-IPV4-ROUTING
+ match access-group name VSL-BFD
+ match access-group name VSL-DHCP-CLIENT-TO-SERVER
+ match access-group name VSL-DHCP-SERVER-TO-CLIENT
+ match access-group name VSL-DHCP-SERVER-TO-SERVER
+ match access-group name VSL-IPV6-ROUTING
+class-map match-all AutoQos-4.0-VoIP-Data-Cos
+ match cos  5 
+class-map match-any AutoQos-4.0-Multimedia-Stream-Queue
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+class-map match-any VSL-MULTIMEDIA-TRAFFIC
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+class-map match-all AutoQos-4.0-VoIP-Signal-Cos
+ match cos  3 
+class-map match-any AutoQos-4.0-Multimedia-Conf-Queue
+ match cos  4 
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-all AutoQos-4.0-Default-Classify
+ match access-group name AutoQos-4.0-ACL-Default
+class-map match-any AutoQos-4.0-Bulk-Data-Queue
+ match cos  1 
+ match dscp af11 
+ match dscp af12 
+ match dscp af13 
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-all AutoQos-4.0-Transaction-Classify
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any VSL-VOICE-VIDEO-TRAFFIC
+ match dscp ef 
+ match dscp cs4 
+ match dscp cs5 
+class-map match-any AutoQos-4.0-Scavenger-Queue
+ match dscp cs1 
+ match cos  1 
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any AutoQos-4.0-Control-Mgmt-Queue
+ match cos  3 
+ match dscp cs7 
+ match dscp cs6 
+ match dscp cs3 
+ match dscp cs2 
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-all AutoQos-4.0-Bulk-Data-Classify
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-any AutoQos-4.0-Trans-Data-Queue
+ match cos  2 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any AutoQos-4.0-VoIP-Data
+ match dscp ef 
+ match cos  5 
+class-map match-any VSL-SIGNALING-NETWORK-MGMT
+ match dscp cs2 
+ match dscp cs3 
+ match dscp cs6 
+ match dscp cs7 
+class-map match-all AutoQos-4.0-Multimedia-Conf-Classify
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-any AutoQos-4.0-VoIP-Signal
+ match dscp cs3 
+ match cos  3 
+!
+policy-map AutoQos-4.0-Output-Policy
+ class AutoQos-4.0-Scavenger-Queue
+  bandwidth remaining percent 1 
+ class AutoQos-4.0-Priority-Queue
+  priority
+  police cir percent 30 bc 33 ms
+ class AutoQos-4.0-Control-Mgmt-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Conf-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Stream-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Trans-Data-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Bulk-Data-Queue
+  bandwidth remaining percent 4 
+ class class-default
+  bandwidth remaining percent 25 
+policy-map VSL-Queuing-Policy
+ class VSL-MGMT-PACKETS
+  bandwidth percent 5 
+ class VSL-L2-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-L3-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-VOICE-VIDEO-TRAFFIC
+  bandwidth percent 30 
+ class VSL-SIGNALING-NETWORK-MGMT
+  bandwidth percent 10 
+ class VSL-MULTIMEDIA-TRAFFIC
+  bandwidth percent 20 
+ class VSL-DATA-PACKETS
+  bandwidth percent 20 
+ class class-default
+  bandwidth percent 5 
+policy-map AutoQos-4.0-Cisco-Phone-Input-Policy
+ class AutoQos-4.0-VoIP-Data-Cos
+  set dscp ef
+  police cir 128000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class AutoQos-4.0-VoIP-Signal-Cos
+  set dscp cs3
+  police cir 32000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class class-default
+  set dscp default
+  set cos 0
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Loopback
+ ip address 172.23.1.3 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description OOB Management
+ vrf forwarding Mgmt-intf
+ ip address 172.16.1.113 255.255.255.0
+ duplex full
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description to ets-rt1
+ ip address 172.23.3.2 255.255.255.252
+ ip ospf cost 1
+ duplex full
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ description to etsoak-core-sw
+ ip address 172.23.4.1 255.255.255.252
+ ip ospf cost 1
+ duplex full
+ speed auto
+ media-type rj45
+!
+router ospf 1
+ passive-interface Loopback0
+ network 10.0.0.16 0.0.0.15 area 0
+ network 10.0.128.0 0.0.0.3 area 0
+ network 172.23.1.3 0.0.0.0 area 0
+ network 172.23.3.0 0.0.0.3 area 0
+ network 172.23.4.0 0.0.0.3 area 0
+ network 192.168.0.4 0.0.0.0 area 0
+!
+router bgp 1
+ bgp router-id 192.168.0.4
+ bgp log-neighbor-changes
+ neighbor 192.168.0.3 remote-as 1
+ neighbor 192.168.0.3 description iBGP peer ets-rt1
+ neighbor 192.168.0.3 update-source Loopback0
+ !
+ address-family ipv4
+  network 192.168.0.4 mask 255.255.255.255
+  neighbor 192.168.0.3 activate
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 172.16.1.2
+ip ssh server algorithm authentication password
+!
+ip access-list extended AutoQos-4.0-ACL-Bulk-Data
+ permit tcp any any eq ftp
+ permit tcp any any eq ftp-data
+ permit tcp any any eq 22
+ permit tcp any any eq smtp
+ permit tcp any any eq 465
+ permit tcp any any eq 143
+ permit tcp any any eq 993
+ permit tcp any any eq pop3
+ permit tcp any any eq 995
+ permit tcp any any eq 1914
+ip access-list extended AutoQos-4.0-ACL-Default
+ permit ip any any
+ip access-list extended AutoQos-4.0-ACL-Multimedia-Conf
+ permit udp any any range 16384 32767
+ip access-list extended AutoQos-4.0-ACL-Scavenger
+ permit tcp any any eq 1214
+ permit udp any any eq 1214
+ permit tcp any any range 2300 2400
+ permit udp any any range 2300 2400
+ permit tcp any any eq 3689
+ permit udp any any eq 3689
+ permit tcp any any range 6881 6999
+ permit tcp any any eq 11999
+ permit tcp any any range 28800 29100
+ip access-list extended AutoQos-4.0-ACL-Signaling
+ permit tcp any any range 2000 2002
+ permit tcp any any range 5060 5061
+ permit udp any any range 5060 5061
+ip access-list extended AutoQos-4.0-ACL-Transactional-Data
+ permit tcp any any eq 443
+ permit tcp any any eq 1521
+ permit udp any any eq 1521
+ permit tcp any any eq 1526
+ permit udp any any eq 1526
+ permit tcp any any eq 1575
+ permit udp any any eq 1575
+ permit tcp any any eq 1630
+ permit udp any any eq 1630
+!
+!
+snmp-server community ets2lake RW
+snmp-server community sss2lake RO
+snmp-server chassis-id 
+!
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+^C
+banner incoming ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+^C
+banner login ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+^C
+!
+line con 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ privilege level 15
+ password cisco
+ transport input telnet ssh
+!
+no scheduler allocate
+!
+end
+
+etsoak-rt1#

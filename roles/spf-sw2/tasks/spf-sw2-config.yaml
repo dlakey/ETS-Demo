@@ -11,6 +11,7 @@
 
   - name: ETSOAK SPF Switch2 Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/spf-sw2/files/spf-sw2.cfg"

@@ -1,0 +1,9 @@
+---
+- name: Windows PowerShell Playbook
+  hosts: windows
+  tasks:
+    - name: Execute PowerShell Script
+      script: dns-stop.ps1 universe
+      register: process
+    - debug: var=process
+

@@ -11,6 +11,7 @@
 
   - name: ETSOAK LP24 Switch Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/etsoak-lp24-sg300/files/etsoak-lp24-sg300.cfg"

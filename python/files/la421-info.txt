@@ -1,0 +1,558 @@
+terminal length 0
+la421#show version
+Cisco IOS Software, vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949) [mmen 101]
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Wed 22-Mar-17 08:38 by mmen
+
+
+ROM: Bootstrap program is IOSv
+
+la421 uptime is 6 days, 20 hours, 5 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios_l2-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv () processor (revision 1.0) with 722177K/62464K bytes of memory.
+Processor board ID 9DQ5I9NDEKO
+4 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+0K bytes of ATA CompactFlash 2 (Read/Write)
+10080K bytes of ATA CompactFlash 3 (Read/Write)
+
+Configuration register is 0x101
+
+la421#show run
+Building configuration...
+
+Current configuration : 10173 bytes
+!
+! Last configuration change at 02:22:37 UTC Fri Dec 8 2017 by cisco
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname la421
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable password cisco
+!
+username cisco privilege 15 password 0 cisco
+aaa new-model
+!
+!
+aaa authentication login default local
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+vtp domain virl.lab
+vtp mode transparent
+!
+!
+!
+no ip domain-lookup
+ip domain-name ets.com
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 2
+ name ank_vlan2
+!
+vlan 10
+ name User
+!
+vlan 20
+ name VoIP
+!
+vlan 30
+ name User WiFi
+!
+vlan 40
+ name Server
+!
+vlan 70
+ name DG
+!
+vlan 80
+ name BK
+!
+vlan 90
+ name Internet
+!
+vlan 91
+ name Internet 50M
+!
+vlan 92
+ name Internet 20M GC
+!
+vlan 401
+ name Yard-1 APS
+!
+vlan 402
+ name Yard-2 Crane
+!
+vlan 403
+ name Yard-3 AP, LOS
+!
+vlan 404
+ name Yard-4 Cal,C819,WiFi
+!
+vlan 408
+ name Video-Vlan
+!
+vlan 501
+ name Yard Bldg, PCMC
+!
+vlan 502
+ name Yard Bldg, M&R
+!
+vlan 503
+ name Yard Bldg,MarineTow
+!
+vlan 504
+ name Yard Bldg-4
+no cdp run
+!
+!
+class-map match-any VSL-MGMT-PACKETS
+ match access-group name VSL-MGMT
+class-map match-all AutoQos-4.0-Scavenger-Classify
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any VSL-DATA-PACKETS
+ match any 
+class-map match-all AutoQos-4.0-Signaling-Classify
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-any VSL-L2-CONTROL-PACKETS
+ match access-group name VSL-DOT1x
+ match access-group name VSL-BPDU
+ match access-group name VSL-CDP
+ match access-group name VSL-LLDP
+ match access-group name VSL-SSTP
+ match access-group name VSL-GARP
+class-map match-any AutoQos-4.0-Priority-Queue
+ match cos  5 
+ match dscp ef 
+ match dscp cs5 
+ match dscp cs4 
+class-map match-any VSL-L3-CONTROL-PACKETS
+ match access-group name VSL-IPV4-ROUTING
+ match access-group name VSL-BFD
+ match access-group name VSL-DHCP-CLIENT-TO-SERVER
+ match access-group name VSL-DHCP-SERVER-TO-CLIENT
+ match access-group name VSL-DHCP-SERVER-TO-SERVER
+ match access-group name VSL-IPV6-ROUTING
+class-map match-all AutoQos-4.0-VoIP-Data-Cos
+ match cos  5 
+class-map match-any AutoQos-4.0-Multimedia-Stream-Queue
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+class-map match-any VSL-MULTIMEDIA-TRAFFIC
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+class-map match-all AutoQos-4.0-VoIP-Signal-Cos
+ match cos  3 
+class-map match-any AutoQos-4.0-Multimedia-Conf-Queue
+ match cos  4 
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-all AutoQos-4.0-Default-Classify
+ match access-group name AutoQos-4.0-ACL-Default
+class-map match-any AutoQos-4.0-Bulk-Data-Queue
+ match cos  1 
+ match dscp af11 
+ match dscp af12 
+ match dscp af13 
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-all AutoQos-4.0-Transaction-Classify
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any VSL-VOICE-VIDEO-TRAFFIC
+ match dscp ef 
+ match dscp cs4 
+ match dscp cs5 
+class-map match-any AutoQos-4.0-Scavenger-Queue
+ match dscp cs1 
+ match cos  1 
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any AutoQos-4.0-Control-Mgmt-Queue
+ match cos  3 
+ match dscp cs7 
+ match dscp cs6 
+ match dscp cs3 
+ match dscp cs2 
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-all AutoQos-4.0-Bulk-Data-Classify
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-any AutoQos-4.0-Trans-Data-Queue
+ match cos  2 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any AutoQos-4.0-VoIP-Data
+ match dscp ef 
+ match cos  5 
+class-map match-any VSL-SIGNALING-NETWORK-MGMT
+ match dscp cs2 
+ match dscp cs3 
+ match dscp cs6 
+ match dscp cs7 
+class-map match-all AutoQos-4.0-Multimedia-Conf-Classify
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-any AutoQos-4.0-VoIP-Signal
+ match dscp cs3 
+ match cos  3 
+!
+policy-map AutoQos-4.0-Output-Policy
+ class AutoQos-4.0-Scavenger-Queue
+  bandwidth remaining percent 1 
+ class AutoQos-4.0-Priority-Queue
+  priority
+  police cir percent 30 bc 33 ms
+ class AutoQos-4.0-Control-Mgmt-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Conf-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Stream-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Trans-Data-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Bulk-Data-Queue
+  bandwidth remaining percent 4 
+ class class-default
+  bandwidth remaining percent 25 
+policy-map VSL-Queuing-Policy
+ class VSL-MGMT-PACKETS
+  bandwidth percent 5 
+ class VSL-L2-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-L3-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-VOICE-VIDEO-TRAFFIC
+  bandwidth percent 30 
+ class VSL-SIGNALING-NETWORK-MGMT
+  bandwidth percent 10 
+ class VSL-MULTIMEDIA-TRAFFIC
+  bandwidth percent 20 
+ class VSL-DATA-PACKETS
+  bandwidth percent 20 
+ class class-default
+  bandwidth percent 5 
+policy-map AutoQos-4.0-Cisco-Phone-Input-Policy
+ class AutoQos-4.0-VoIP-Data-Cos
+  set dscp ef
+  police cir 128000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class AutoQos-4.0-VoIP-Signal-Cos
+  set dscp cs3
+  police cir 32000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class class-default
+  set dscp default
+  set cos 0
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Loopback
+ no ip address
+!
+interface GigabitEthernet0/0
+ description OOB management
+ no switchport
+ vrf forwarding Mgmt-intf
+ ip address 172.16.1.11 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ description to ets-core1-4507
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+interface GigabitEthernet0/2
+ description to ets-lp5-sg300
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+interface GigabitEthernet0/3
+ description to ets-lp7-sg300
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 172.16.1.2
+!
+ip access-list extended AutoQos-4.0-ACL-Bulk-Data
+ permit tcp any any eq ftp
+ permit tcp any any eq ftp-data
+ permit tcp any any eq 22
+ permit tcp any any eq smtp
+ permit tcp any any eq 465
+ permit tcp any any eq 143
+ permit tcp any any eq 993
+ permit tcp any any eq pop3
+ permit tcp any any eq 995
+ permit tcp any any eq 1914
+ip access-list extended AutoQos-4.0-ACL-Default
+ permit ip any any
+ip access-list extended AutoQos-4.0-ACL-Multimedia-Conf
+ permit udp any any range 16384 32767
+ip access-list extended AutoQos-4.0-ACL-Scavenger
+ permit tcp any any eq 1214
+ permit udp any any eq 1214
+ permit tcp any any range 2300 2400
+ permit udp any any range 2300 2400
+ permit tcp any any eq 3689
+ permit udp any any eq 3689
+ permit tcp any any range 6881 6999
+ permit tcp any any eq 11999
+ permit tcp any any range 28800 29100
+ip access-list extended AutoQos-4.0-ACL-Signaling
+ permit tcp any any range 2000 2002
+ permit tcp any any range 5060 5061
+ permit udp any any range 5060 5061
+ip access-list extended AutoQos-4.0-ACL-Transactional-Data
+ permit tcp any any eq 443
+ permit tcp any any eq 1521
+ permit udp any any eq 1521
+ permit tcp any any eq 1526
+ permit udp any any eq 1526
+ permit tcp any any eq 1575
+ permit udp any any eq 1575
+ permit tcp any any eq 1630
+ permit udp any any eq 1630
+!
+!
+!
+snmp-server community ets2lake RW
+snmp-server community sss2lake RO
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ privilege level 15
+ password cisco
+ transport input telnet ssh
+!
+!
+end
+
+la421#show logging
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited, 0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 73 messages logged, xml disabled,
+                     filtering disabled
+    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                     filtering disabled
+    Buffer logging:  level debugging, 73 messages logged, xml disabled,
+                    filtering disabled
+    Exception Logging: size (8192 bytes)
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+    Trap logging: level informational, 66 message lines logged
+        Logging Source-Interface:       VRF Name:
+
+Log Buffer (8192 bytes):
+
+*Mar  1 00:00:11.110: %VIRTIO-3-INIT_FAIL: Failed to initialize device, PCI 0/8/0/1002 , device is disabled, not supported
+*Mar  1 00:00:11.200: %ATA-6-DEV_FOUND: device 0x1F0
+*Mar  1 00:00:11.456: %ATA-6-DEV_FOUND: device 0x171
+*Mar  1 00:00:11.881: %NVRAM-5-CONFIG_NVRAM_NOT_FOUND: NVRAM configuration 'flash:/nvram' could not be found on disk.
+*Dec  1 18:25:07.433: %SPANTREE-5-EXTENDED_SYSID: Extended SysId enabled for type vlan
+*Dec  1 18:25:30.883: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to reset
+*Dec  1 18:25:30.886: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to reset
+*Dec  1 18:25:30.888: %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to reset
+*Dec  1 18:25:30.891: %LINK-5-CHANGED: Interface GigabitEthernet0/3, changed state to reset
+*Dec  1 18:25:32.121: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+*Dec  1 18:25:32.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+*Dec  1 18:25:32.134: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up
+*Dec  1 18:25:32.139: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to up
+*Dec  1 18:25:32.870: %CVAC-7-CONFIG_FOUND: Configuration file flash3:/ios_config.txt was found and will be applied to NVRAM.
+*Dec  1 18:25:33.780: %LINK-3-UPDOWN: Interface GigabitEthernet0/3, changed state to up
+*Dec  1 18:25:33.786: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to up
+*Dec  1 18:25:33.790: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+*Dec  1 18:25:33.798: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+*Dec  1 18:25:43.706: %SYS-5-RESTART: System restarted --
+Cisco IOS Software, vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949) [mmen 101]
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Wed 22-Mar-17 08:38 by mmen
+*Dec  1 18:25:44.215: %CVAC-7-CONFIG_FOUND: Configuration file flash3:/ios_config.txt was found and will be applied to NVRAM.
+*Dec  1 18:25:44.299: %SPANTREE-7-RECV_1Q_NON_TRUNK: Received 802.1Q BPDU on non trunk GigabitEthernet0/2 VLAN1.
+*Dec  1 18:25:44.300: %SPANTREE-7-BLOCK_PORT_TYPE: Blocking GigabitEthernet0/2 on VLAN0001. Inconsistent port type.
+*Dec  1 18:25:44.302: %SPANTREE-7-RECV_1Q_NON_TRUNK: Received 802.1Q BPDU on non trunk GigabitEthernet0/3 VLAN1.
+*Dec  1 18:25:44.302: %SPANTREE-7-BLOCK_PORT_TYPE: Blocking GigabitEthernet0/3 on VLAN0001. Inconsistent port type.
+*Dec  1 18:25:44.313: %SPANTREE-7-RECV_1Q_NON_TRUNK: Received 802.1Q BPDU on non trunk GigabitEthernet0/1 VLAN1.
+*Dec  1 18:25:44.314: %SPANTREE-7-BLOCK_PORT_TYPE: Blocking GigabitEthernet0/1 on VLAN0001. Inconsistent port type.
+*Dec  1 18:25:44.323: %SPANTREE-7-RECV_1Q_NON_TRUNK: Received 802.1Q BPDU on non trunk GigabitEthernet0/0 VLAN1.
+*Dec  1 18:25:44.325: %SPANTREE-7-BLOCK_PORT_TYPE: Blocking GigabitEthernet0/0 on VLAN0001. Inconsistent port type.
+*Dec  1 18:25:47.912: %SW_VLAN-6-VTP_DOMAIN_NAME_CHG: VTP domain name changed to virl.lab.
+*Dec  1 18:25:51.818: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to up
+*Dec  1 18:25:53.106: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+*Dec  1 18:25:54.107: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+*Dec  1 18:26:21.097: %PLATFORM-5-SIGNATURE_VERIFIED: Image 'flash0:/vios_l2-adventerprisek9-m' passed code signing verification
+*Dec  1 18:26:42.122: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Dec  1 18:26:43.579: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+*Dec  1 18:26:44.015: %CVAC-4-CONFIG_DONE: Configuration generated from file flash3:/ios_config.txt was applied and saved to NVRAM. See 'show running-config' or 'show startup-config' for more details.
+*Dec  1 18:32:12.009: %SSH-5-ENABLED: SSH 1.99 has been enabled
+*Dec  1 18:32:14.065: %SYS-5-CONFIG_I: Configured from console by console
+*Dec  1 18:32:20.246: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Dec  1 18:32:21.205: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+*Dec  1 18:52:05.342: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  1 19:06:50.709: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  1 19:19:58.230: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  1 22:05:21.308: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  2 08:20:28.287: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  2 10:39:31.768: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  2 10:39:37.655: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Dec  2 10:39:38.701: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+*Dec  2 11:05:09.721: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  2 11:10:01.212: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  2 12:14:19.386: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  3 18:49:38.454: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  3 19:05:19.067: %SYS-5-CONFIG_I: Configured from console by cisco on vty1 (172.16.1.100)
+*Dec  4 06:59:20.434: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  4 10:09:16.547: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  4 10:14:53.658: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  5 02:03:17.504: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  7 11:39:25.769: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  7 12:11:53.937: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  7 12:26:27.724: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  8 02:04:25.837: %SYS-5-CONFIG_I: Configured from console by cisco on vty1 (172.16.1.100)
+*Dec  8 02:16:02.221: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  8 02:16:13.843: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:16:13.906: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:16:18.187: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:16:18.231: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:18:15.142: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:18:15.181: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:22:37.826: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  8 02:22:44.687: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Dec  8 02:22:46.121: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+*Dec  8 02:31:17.654: %SYS-5-CONFIG_I: Configured from  by snmp
+*Dec  8 02:31:17.771: %SYS-5-CONFIG_I: Configured from  by snmp
+la421#

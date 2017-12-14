@@ -1,0 +1,9 @@
+---
+- name: Windows PowerShell Playbook
+  hosts: windows
+  tasks:
+    - name: Execute PowerShell Script
+      script: dps-stop.ps1 universe
+      register: process
+    - debug: var=process
+

@@ -1,0 +1,200 @@
+
+
+ Switch: la521
+
+'
+Name: Gi0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none 
+Administrative private-vlan mapping: none 
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+'
+
+GigabitEthernet0/1 is up, line protocol is up (connected) 
+  Hardware is iGbE, address is fa16.3ecb.9541 (bia fa16.3ecb.9541)
+  Description: to ets-core1-4507
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto Duplex, Auto Speed, link type is auto, media type is unknown media type
+  output flow-control is unsupported, input flow-control is unsupported
+  Full-duplex, Auto-speed, link type is auto, media type is RJ45
+  input flow-control is off, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:09, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 4000 bits/sec, 9 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     1729882 packets input, 118301113 bytes, 0 no buffer
+     Received 1729882 broadcasts (1729882 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 1729882 multicast, 0 pause input
+     227104 packets output, 15380863 bytes, 0 underruns
+     0 output errors, 0 collisions, 2 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Interface GigabitEthernet0/1 (idb 0xC4D46F0)
+Hardware is iGbE 
+ Register base address: 0xFEBA0000
+ PCI REV: A3
+  network link is up  
+  loopback type is none
+
+= Media  RJ45 =
+
+Media Change Count: 0
+
+MAC registers:
+  CTRL  =0x00000040, STATUS=0x80080783, CTRL_X=0x00000000, IMS   =0x00000091
+  EECD  =0x00000188, EERD  =0x41950210  ETT   =0x00000000, TXDMAC=0x00000000
+  RCTL  =0x0040803A, RDBAL =0x0801D000, RDBAH =0x00000000, RDLEN =0x00008000
+  RDH   =0x0000055A, RDT   =0x00000559, RDTR  =0x00000020, RLPML =0x00000000
+  RFCTL =0x00000000
+  TCTL  =0x000400FA, TDBAL =0x08026000, TDBAH =0x00000000, TDLEN =0x00008000
+  TDH   =0x00000720, TDT   =0x00000720, TIPG  =0x00000000
+  TDWAH   =0x00000000, TDWAL   =0x00000000
+  FCRTH =0x00000000, FCRTL =0x00000000
+  FCAH  =0x00000000, FCAL  =0x00000000, FCT   =0x00000000, FCTTV =0x00000000
+  RDFH  =0x00000000, RDFT  =0x00000000, RDFPC =0x00000000
+  TDFH  =0x00000000, TDFT  =0x00000000, TDFPC =0x00000000
+  RDFHS =0x00000000, RDFTS =0x00000000, RXDCTL=0x00000000
+  TDFHS =0x00000000, TDFTS =0x00000000, TXDCTL=0x01020204
+  RXCSUM=0x00000000, TIDV=0x00000000
+  PCS_CFG   =0x00000000, PCS_LCTL=0x00000000, PCS_LSTS =0x00000000
+  PCS_ANADV =0x00000000, PCS_LPAB=0x00000000, PCS_NPTX =0x00000000
+  PCS_LPABNP=0x00000000, I2CCMD  =0x00000000, I2CPARAMS=0x00000000
+
+Register decodes:
+  Status              : 0x80080783, FD, UP, 1000Mbps, Auto1000Mbps, PCI
+  Control register    : 0x00000040, HD, SetLinkUP, 10Mbs
+  Control register ext: 0x00000000, Copper
+
+  Rxdescriptor addr=082B6E00 len=00000048, stat=00000000
+  Txdescriptor addr=06D1A8E2 cmd/len=0B00003C, stat=00000001
+  RX is  enabled, TX is  enabled
+  Device status = full-duplex, link up
+  PCI width = 32, PCI66=0, PCIX=0, PCIXSPD is 50-66MHz  Device Speed = 1000Mbps
+
+PCI configuration registers:
+  bus_no=0, device_no=4, subdevice 0
+  DeviceID=0x100E, VendorID=0x8086, Command=0x0106, Status=0x0000
+  Class=0x02/0x00/0x00, Revision=0x03, LatencyTimer=0x00, CacheLineSize=0x00
+  BaseAddr0=0xFEBA0000, BaseAddr1=0x0000C041, MaxLat=0x00,MinGnt=0x00
+  SubsysDeviceID=0x1100, SubsysVendorID=0x1AF4
+ Interrupt Line 0x0B, Pin 0x01
+  Cap_Ptr=0x00000000  Retry/TRDY Timeout=0x00000000
+  PMC=0x00000000  PMCSR=0x00000000
+  DEVCTRL=0x00000000
+
+Internal Driver Information:
+  lc_ip_turbo_fs=0x229CBD0, ip_routecache=0x11(dfs=0/mdfs=0)
+  i82576_ds=0xC4727D8, registers=0xFEBA0000
+  rx cache size=2048, rx cache end=1, rx_nobuffer=0
+  max_mtu=1528
+  ring sizes: RX=2048, TX=2048
+  rxring=0x801D000, shadow=0xC4D6360, head=1370, rx_buf_size=2048
+  txring=0x8026000, shadow=0xC4D8390, sw_tdh=1824, tail=1824
+  chip_state=2, pci_rev=3
+  tx_count=0, tx_ring_max=2048, tx_limited=0 (cur ring size 2048)
+  rx_overrun=0, rx_seq=0, rx_no_enp=0, rx_discard=0
+  throttled=0, enabled=0, disabled=0, bypassed=0
+  reset=2(init=1, check=0, restart=1, pci=0), auto_restart=2
+  link_reset=0, tx_carrier_loss=0, fatal_tx_err=0
+  wait_for_last_tdt=0, rx_stuck=0
+  tx_stuck=0,  rx_max_spin=1,  rr_port_next=0
+
+Statistics:
+  CRC error        0             Symbol error     0           
+  Missed Packets   0             Excessive Coll   0           
+  Multiple Coll    0             Length Error     0           
+  Late Coll        0             Collision        0           
+  Defer            0             Receive Length   0           
+  XON RX           0           
+  XON TX           0             XOFF RX          0           
+  XOFF TX          0             FC RX Unsupport  0           
+  Packet RX (64)   101275        Packet RX (127)  1628605     
+  Packet RX (255)  1             Packet RX (511)  1           
+  Packet RX (1023) 0             Packet RX (1522) 0           
+  Good Packet RX   2957355241    Broadcast RX     0           
+  Multicast RX     1729882       Good Packet TX   227104      
+  Good Octets RX.H 0             Good Octets RX.L 126005221   
+  Good Octets TX.H 0             Good Octets TX.L 15380863    
+  RX No Buff       0             RX Undersize     0           
+  RX Fragment      0             RX Oversize      0           
+  RX Octets High   0             RX Octets Low    126005221   
+  TX Octets High   0             TX Octets Low    15380863    
+  TX Packet        227104        RX Packet        1729882     
+  TX Broadcast     0             TX Multicast     227104      
+  Packet TX (64)   1             Packet TX (127)  219154      
+  Packet TX (255)  0             Packet TX (511)  5           
+  Packet TX (1023) 0             Packet TX (1522) 0           
+  TX No CSR        0           
+  RX Error Count   0             TCP Segmentation 0           
+  Host Trasmit Discarded packets by MAC Count  0           
+  Interrupt Assertion Count   0           
+  Receive Packets to Host Count 0           
+  Host Good Packets Transmitted Count 0           
+
+Registers:
+  Phy control                   : 0x00001140, FD, AutoEna, 1000Mbps
+  Phy status                    : 0x0000796D, UP, AutoDone
+  Phy ID1                       : 0x00000141
+  Phy ID2                       : 0x00000C20
+  Autoneg cap advertised        : 0x000005E1, CSMA/CD, 10M HD, 10M FD, 100M HD, 100M FD, Pause
+  Autoneg base page cap         : 0x000041E0
+  Autoneg expanded              : 0x00000000
+  Autoneg next page tx          : 0x00000000
+  Autoneg LP next page          : 0x00000000
+  1000T control                 : 0x00000E00, 1000 FD, Master
+  1000T status                  : 0x00003C00, LocRxOk, RemRxOk, Rem1000T-FD, Rem1000T-HD
+  Extended status               : 0x00000000
+  Port config                   : 0x00000360
+  Port status                   : 0x0000AC00, HD, UP, 100Mbps
+  Port control                  : 0x00000000
+  Link health                   : 0x00000000
+  1000T FIFO                    : 0x00000D60
+  Channel quality               : 0x00000000
+
+HW addr filter: 0xC4DC3C0
+
+  Chip address filter[0] 80004195.CB3E16FA
+  Chip address filter[1] 80000700.00C28001
+  Chip address filter[2] 8000CCCC.CC0C0001
+  Chip address filter[3] 80000200.00C28001
+  Chip address filter[4] 7FFFFFFF.00000000
+  Chip address filter[5] 7FFFFFFF.00000000
+  Chip address filter[6] 7FFFFFFF.00000000
+  Chip address filter[7] 7FFFFFFF.00000000
+  Chip address filter[8] 7FFFFFFF.00000000
+  Chip address filter[9] 7FFFFFFF.00000000
+  Chip address filter[10] 7FFFFFFF.00000000
+  Chip address filter[11] 7FFFFFFF.0000

@@ -11,6 +11,7 @@
 
   - name: ETS Admin Router Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/ets-rt1/files/ets-rt1.cfg"

@@ -1,0 +1,8 @@
+---
+ansible_user: lakesystem@gmail.com
+ansible_password: Don2lake
+ansible_port: 5986
+ansible_connection: winrm
+
+# The following is necessary for Python 2.X
+ansible_winrm_server_cert_validation: ignore

@@ -1,0 +1,46 @@
+
+
+
+
+ets-core Router:
+
+
+Routing entry for 172.23.227.0/24
+  Known via "connected", distance 0, metric 0 (connected, via interface)
+  Routing Descriptor Blocks:
+  * directly connected, via Vlan40
+      Route metric is 0, traffic share count is 1
+
+
+
+ets-rt1 Router:
+
+Routing entry for 172.23.227.0/24
+  Known via "ospf 1", distance 110, metric 2, type intra area
+  Last update from 172.23.2.1 on GigabitEthernet0/1, 00:09:41 ago
+  Routing Descriptor Blocks:
+  * 172.23.2.1, from 172.16.1.1, 00:09:41 ago, via GigabitEthernet0/1
+      Route metric is 2, traffic share count is 1
+
+
+
+etsoak-rt1 Router:
+
+Routing entry for 172.23.227.0/24
+  Known via "ospf 1", distance 110, metric 3, type intra area
+  Last update from 172.23.3.1 on GigabitEthernet0/1, 00:10:58 ago
+  Routing Descriptor Blocks:
+  * 172.23.3.1, from 172.16.1.1, 00:10:58 ago, via GigabitEthernet0/1
+      Route metric is 3, traffic share count is 1
+
+
+
+etsoak-core-sw Router:
+
+
+Routing entry for 172.23.227.0/24
+  Known via "ospf 1", distance 110, metric 4, type intra area
+  Last update from 172.23.4.1 on GigabitEthernet0/1, 00:06:19 ago
+  Routing Descriptor Blocks:
+  * 172.23.4.1, from 172.16.1.1, 00:06:19 ago, via GigabitEthernet0/1
+      Route metric is 4, traffic share count is 1

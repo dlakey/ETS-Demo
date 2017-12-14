@@ -11,6 +11,7 @@
 
   - name: ETSOAK Core Switch Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/etsoak-core-sw/files/etsoak-core-sw.cfg"

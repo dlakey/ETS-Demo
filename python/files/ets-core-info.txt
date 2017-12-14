@@ -1,0 +1,606 @@
+terminal length 0
+ets-core#show version
+Cisco IOS Software, vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949) [mmen 101]
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Wed 22-Mar-17 08:38 by mmen
+
+
+ROM: Bootstrap program is IOSv
+
+ets-core uptime is 6 days, 1 hour, 25 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios_l2-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv () processor (revision 1.0) with 660737K/123904K bytes of memory.
+Processor board ID 9G2QGRK0KU5
+11 Virtual Ethernet interfaces
+10 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+0K bytes of ATA CompactFlash 2 (Read/Write)
+10080K bytes of ATA CompactFlash 3 (Read/Write)
+
+Configuration register is 0x101
+
+ets-core#show config
+Using 5326 out of 262144 bytes, uncompressed size = 11916 bytes
+!
+! Last configuration change at 16:22:20 UTC Thu Dec 7 2017 by cisco
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname ets-core
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable password cisco
+!
+username cisco password 0 cisco
+aaa new-model
+!
+!
+aaa authentication login default local
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+vtp domain virl.lab
+vtp mode transparent
+!
+!
+!
+no ip domain-lookup
+ip domain-name ets.com
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 2
+ name ank_vlan2
+!
+vlan 10
+ name User
+!
+vlan 20
+ name VoIP
+!
+vlan 30 
+!
+vlan 40
+ name Server
+!
+vlan 70
+ name DG
+!
+vlan 80
+ name BK
+!
+vlan 90
+ name Internet
+!
+vlan 91-92,401-404 
+!
+vlan 408
+ name Video-Vlan
+!
+vlan 501-504 
+no cdp run
+!
+!
+class-map match-any VSL-MGMT-PACKETS
+ match access-group name VSL-MGMT
+class-map match-all AutoQos-4.0-Scavenger-Classify
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any VSL-DATA-PACKETS
+ match any 
+class-map match-all AutoQos-4.0-Signaling-Classify
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-any VSL-L2-CONTROL-PACKETS
+ match access-group name VSL-DOT1x
+ match access-group name VSL-BPDU
+ match access-group name VSL-CDP
+ match access-group name VSL-LLDP
+ match access-group name VSL-SSTP
+ match access-group name VSL-GARP
+class-map match-any AutoQos-4.0-Priority-Queue
+ match cos  5 
+ match dscp ef 
+ match dscp cs5 
+ match dscp cs4 
+class-map match-any VSL-L3-CONTROL-PACKETS
+ match access-group name VSL-IPV4-ROUTING
+ match access-group name VSL-BFD
+ match access-group name VSL-DHCP-CLIENT-TO-SERVER
+ match access-group name VSL-DHCP-SERVER-TO-CLIENT
+ match access-group name VSL-DHCP-SERVER-TO-SERVER
+ match access-group name VSL-IPV6-ROUTING
+class-map match-all AutoQos-4.0-VoIP-Data-Cos
+ match cos  5 
+class-map match-any AutoQos-4.0-Multimedia-Stream-Queue
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+class-map match-any VSL-MULTIMEDIA-TRAFFIC
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match dscp af31 
+ match dscp af32 
+ match dscp af33 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+class-map match-all AutoQos-4.0-VoIP-Signal-Cos
+ match cos  3 
+class-map match-any AutoQos-4.0-Multimedia-Conf-Queue
+ match cos  4 
+ match dscp af41 
+ match dscp af42 
+ match dscp af43 
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-all AutoQos-4.0-Default-Classify
+ match access-group name AutoQos-4.0-ACL-Default
+class-map match-any AutoQos-4.0-Bulk-Data-Queue
+ match cos  1 
+ match dscp af11 
+ match dscp af12 
+ match dscp af13 
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-all AutoQos-4.0-Transaction-Classify
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any VSL-VOICE-VIDEO-TRAFFIC
+ match dscp ef 
+ match dscp cs4 
+ match dscp cs5 
+class-map match-any AutoQos-4.0-Scavenger-Queue
+ match dscp cs1 
+ match cos  1 
+ match access-group name AutoQos-4.0-ACL-Scavenger
+class-map match-any AutoQos-4.0-Control-Mgmt-Queue
+ match cos  3 
+ match dscp cs7 
+ match dscp cs6 
+ match dscp cs3 
+ match dscp cs2 
+ match access-group name AutoQos-4.0-ACL-Signaling
+class-map match-all AutoQos-4.0-Bulk-Data-Classify
+ match access-group name AutoQos-4.0-ACL-Bulk-Data
+class-map match-any AutoQos-4.0-Trans-Data-Queue
+ match cos  2 
+ match dscp af21 
+ match dscp af22 
+ match dscp af23 
+ match access-group name AutoQos-4.0-ACL-Transactional-Data
+class-map match-any AutoQos-4.0-VoIP-Data
+ match dscp ef 
+ match cos  5 
+class-map match-any VSL-SIGNALING-NETWORK-MGMT
+ match dscp cs2 
+ match dscp cs3 
+ match dscp cs6 
+ match dscp cs7 
+class-map match-all AutoQos-4.0-Multimedia-Conf-Classify
+ match access-group name AutoQos-4.0-ACL-Multimedia-Conf
+class-map match-any AutoQos-4.0-VoIP-Signal
+ match dscp cs3 
+ match cos  3 
+!
+policy-map AutoQos-4.0-Output-Policy
+ class AutoQos-4.0-Scavenger-Queue
+  bandwidth remaining percent 1 
+ class AutoQos-4.0-Priority-Queue
+  priority
+  police cir percent 30 bc 33 ms
+ class AutoQos-4.0-Control-Mgmt-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Conf-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Multimedia-Stream-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Trans-Data-Queue
+  bandwidth remaining percent 10 
+ class AutoQos-4.0-Bulk-Data-Queue
+  bandwidth remaining percent 4 
+ class class-default
+  bandwidth remaining percent 25 
+policy-map VSL-Queuing-Policy
+ class VSL-MGMT-PACKETS
+  bandwidth percent 5 
+ class VSL-L2-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-L3-CONTROL-PACKETS
+  bandwidth percent 5 
+ class VSL-VOICE-VIDEO-TRAFFIC
+  bandwidth percent 30 
+ class VSL-SIGNALING-NETWORK-MGMT
+  bandwidth percent 10 
+ class VSL-MULTIMEDIA-TRAFFIC
+  bandwidth percent 20 
+ class VSL-DATA-PACKETS
+  bandwidth percent 20 
+ class class-default
+  bandwidth percent 5 
+policy-map AutoQos-4.0-Cisco-Phone-Input-Policy
+ class AutoQos-4.0-VoIP-Data-Cos
+  set dscp ef
+  police cir 128000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class AutoQos-4.0-VoIP-Signal-Cos
+  set dscp cs3
+  police cir 32000 bc 8000
+   exceed-action set-dscp-transmit cs1
+   exceed-action set-cos-transmit 1
+ class class-default
+  set dscp default
+  set cos 0
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Loopback
+ ip address 172.23.1.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description OOB management
+ no switchport
+ vrf forwarding Mgmt-intf
+ ip address 172.16.1.10 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ description to la421
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+interface GigabitEthernet0/2
+ description to la521
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+interface GigabitEthernet0/3
+ description to ets-dc1-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ description to ets-dc2-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ description to ets-ocr-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ description to ets-kalmar-app-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ description to ets-video-access-srv
+ switchport access vlan 408
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ description to ets-rt1
+ no switchport
+ ip address 172.23.2.1 255.255.255.252
+ negotiation auto
+ service-policy output VSL-Queuing-Policy
+!
+interface Vlan10
+ description For-Users
+ ip address 172.23.224.253 255.255.255.0
+!
+interface Vlan20
+ description For-VoIP
+ ip address 172.23.225.254 255.255.255.0
+!
+interface Vlan30
+ description For-WiFi-users
+ ip address 172.23.226.254 255.255.255.0
+!
+interface Vlan40
+ description For-Server-Use
+ ip address 172.23.227.254 255.255.255.0
+!
+interface Vlan70
+ description For-DG-Use
+ ip address 172.23.229.254 255.255.255.0
+!
+interface Vlan91
+ no ip address
+ shutdown
+!
+interface Vlan401
+ description For-Yard-Use-APS
+ ip address 192.168.1.254 255.255.254.0
+ no ip redirects
+ shutdown
+!
+interface Vlan402
+ description For-Yard-Use
+ ip address 192.168.2.254 255.255.255.0
+!
+interface Vlan403
+ description For-Yard-Use
+ ip address 192.168.3.254 255.255.255.0
+!
+interface Vlan404
+ description For-Yard-Use
+ ip address 192.168.7.254 255.255.252.0
+ no ip redirects
+!
+interface Vlan408
+ description Video
+ ip address 192.168.8.254 255.255.255.0
+ no ip redirects
+!
+router ospf 1
+ router-id 172.16.1.1
+ network 172.23.1.1 0.0.0.0 area 0
+ network 172.23.2.0 0.0.0.3 area 0
+ network 172.23.224.0 0.0.0.255 area 0
+ network 172.23.225.0 0.0.0.255 area 0
+ network 172.23.226.0 0.0.0.255 area 0
+ network 172.23.227.0 0.0.0.255 area 0
+ network 192.168.0.0 0.0.1.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+ network 192.168.8.0 0.0.0.255 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 172.16.1.2
+!
+ip access-list extended AutoQos-4.0-ACL-Bulk-Data
+ permit tcp any any eq ftp
+ permit tcp any any eq ftp-data
+ permit tcp any any eq 22
+ permit tcp any any eq smtp
+ permit tcp any any eq 465
+ permit tcp any any eq 143
+ permit tcp any any eq 993
+ permit tcp any any eq pop3
+ permit tcp any any eq 995
+ permit tcp any any eq 1914
+ip access-list extended AutoQos-4.0-ACL-Default
+ permit ip any any
+ip access-list extended AutoQos-4.0-ACL-Multimedia-Conf
+ permit udp any any range 16384 32767
+ip access-list extended AutoQos-4.0-ACL-Scavenger
+ permit tcp any any eq 1214
+ permit udp any any eq 1214
+ permit tcp any any range 2300 2400
+ permit udp any any range 2300 2400
+ permit tcp any any eq 3689
+ permit udp any any eq 3689
+ permit tcp any any range 6881 6999
+ permit tcp any any eq 11999
+ permit tcp any any range 28800 29100
+ip access-list extended AutoQos-4.0-ACL-Signaling
+ permit tcp any any range 2000 2002
+ permit tcp any any range 5060 5061
+ permit udp any any range 5060 5061
+ip access-list extended AutoQos-4.0-ACL-Transactional-Data
+ permit tcp any any eq 443
+ permit tcp any any eq 1521
+ permit udp any any eq 1521
+ permit tcp any any eq 1526
+ permit udp any any eq 1526
+ permit tcp any any eq 1575
+ permit udp any any eq 1575
+ permit tcp any any eq 1630
+ permit udp any any eq 1630
+!
+!
+!
+snmp-server community ets2lake RW
+snmp-server community sss2lake RO
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ privilege level 15
+ password cisco
+ transport input telnet ssh
+!
+!
+end
+
+ets-core#show logging
+Syslog logging: enabled (0 messages dropped, 3 messages rate-limited, 0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 169 messages logged, xml disabled,
+                     filtering disabled
+    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                     filtering disabled
+    Buffer logging:  level debugging, 172 messages logged, xml disabled,
+                    filtering disabled
+    Exception Logging: size (8192 bytes)
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+    Trap logging: level informational, 238 message lines logged
+        Logging Source-Interface:       VRF Name:
+
+Log Buffer (8192 bytes):
+3z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:28:41.436: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:31:11.805: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:32:33.248: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:42:11.458: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:43:06.117: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:45:59.055: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 14:57:50.380: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 15:00:49.887: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 15:50:33.559: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 15:57:17.662: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 16:06:59.037: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 16:08:09.774: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 16:21:31.240: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.3 on GigabitEthernet2/0 from FULL to DOWN, Neighbor Down: Interface down or detached
+*Dec  7 16:21:32.832: %SYS-5-CONFIG_I: Configured from console by cisco on console
+*Dec  7 16:22:17.581: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.3 on GigabitEthernet2/0 from LOADING to FULL, Loading Done
+*Dec  7 16:22:20.949: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  7 16:33:46.899: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 16:37:41.518: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 17:18:18.430: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 17:28:39.101: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 18:03:39.464: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 18:29:00.718: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 18:30:30.452: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 18:33:14.872: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 18:35:17.909: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:00:35.028: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:06:44.046: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:18:33.866: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:28:17.220: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:33:12.782: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet2/0 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  7 19:44:51.203: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Dec  7 19:44:52.558: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+ets-core#

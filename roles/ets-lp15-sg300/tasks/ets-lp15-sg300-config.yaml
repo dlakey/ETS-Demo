@@ -11,6 +11,7 @@
 
   - name: TT ETS LP15 Switch Config
     ios_config:
+      timeout: 60
       provider: "{{ provider }}"
       authorize: yes
       src: "~/ETS-Demo/roles/ets-lp15-sg300/files/ets-lp15-sg300.cfg"

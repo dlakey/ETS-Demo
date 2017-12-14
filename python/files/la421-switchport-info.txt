@@ -1,0 +1,366 @@
+
+
+ Switch: la421
+
+'
+Name: Gi0/2
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none 
+Administrative private-vlan mapping: none 
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+'
+
+GigabitEthernet0/2 is up, line protocol is up (connected) 
+  Hardware is iGbE, address is fa16.3ecf.8d0c (bia fa16.3ecf.8d0c)
+  Description: to ets-lp5-sg300
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto Duplex, Auto Speed, link type is auto, media type is unknown media type
+  output flow-control is unsupported, input flow-control is unsupported
+  Full-duplex, Auto-speed, link type is auto, media type is RJ45
+  input flow-control is off, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: Class-based queueing
+  Output queue: 0/0 (size/max)
+  5 minute input rate 34000 bits/sec, 3 packets/sec
+  5 minute output rate 38000 bits/sec, 11 packets/sec
+     399285 packets input, 408168324 bytes, 0 no buffer
+     Received 23057 broadcasts (23057 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 23057 multicast, 0 pause input
+     6553218 packets output, 831171888 bytes, 0 underruns
+     0 output errors, 0 collisions, 2 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Interface GigabitEthernet0/2 (idb 0xC96B678)
+Hardware is iGbE 
+ Register base address: 0xFEB80000
+ PCI REV: A3
+  network link is up  
+  loopback type is none
+
+= Media  RJ45 =
+
+Media Change Count: 0
+
+MAC registers:
+  CTRL  =0x00000040, STATUS=0x80080783, CTRL_X=0x00000000, IMS   =0x00000091
+  EECD  =0x00000188, EERD  =0x0C8D0210  ETT   =0x00000000, TXDMAC=0x00000000
+  RCTL  =0x0040803A, RDBAL =0x08A79000, RDBAH =0x00000000, RDLEN =0x00008000
+  RDH   =0x000007B5, RDT   =0x000007B4, RDTR  =0x00000020, RLPML =0x00000000
+  RFCTL =0x00000000
+  TCTL  =0x000400FA, TDBAL =0x08A82000, TDBAH =0x00000000, TDLEN =0x00008000
+  TDH   =0x00000682, TDT   =0x00000682, TIPG  =0x00000000
+  TDWAH   =0x00000000, TDWAL   =0x00000000
+  FCRTH =0x00000000, FCRTL =0x00000000
+  FCAH  =0x00000000, FCAL  =0x00000000, FCT   =0x00000000, FCTTV =0x00000000
+  RDFH  =0x00000000, RDFT  =0x00000000, RDFPC =0x00000000
+  TDFH  =0x00000000, TDFT  =0x00000000, TDFPC =0x00000000
+  RDFHS =0x00000000, RDFTS =0x00000000, RXDCTL=0x00000000
+  TDFHS =0x00000000, TDFTS =0x00000000, TXDCTL=0x01020204
+  RXCSUM=0x00000000, TIDV=0x00000000
+  PCS_CFG   =0x00000000, PCS_LCTL=0x00000000, PCS_LSTS =0x00000000
+  PCS_ANADV =0x00000000, PCS_LPAB=0x00000000, PCS_NPTX =0x00000000
+  PCS_LPABNP=0x00000000, I2CCMD  =0x00000000, I2CPARAMS=0x00000000
+
+Register decodes:
+  Status              : 0x80080783, FD, UP, 1000Mbps, Auto1000Mbps, PCI
+  Control register    : 0x00000040, HD, SetLinkUP, 10Mbs
+  Control register ext: 0x00000000, Copper
+
+  Rxdescriptor addr=08B07100 len=00000052, stat=00000000
+  Txdescriptor addr=06D20B9E cmd/len=0B000044, stat=00000001
+  RX is  enabled, TX is  enabled
+  Device status = full-duplex, link up
+  PCI width = 32, PCI66=0, PCIX=0, PCIXSPD is 50-66MHz  Device Speed = 1000Mbps
+
+PCI configuration registers:
+  bus_no=0, device_no=5, subdevice 0
+  DeviceID=0x100E, VendorID=0x8086, Command=0x0106, Status=0x0000
+  Class=0x02/0x00/0x00, Revision=0x03, LatencyTimer=0x00, CacheLineSize=0x00
+  BaseAddr0=0xFEB80000, BaseAddr1=0x0000C081, MaxLat=0x00,MinGnt=0x00
+  SubsysDeviceID=0x1100, SubsysVendorID=0x1AF4
+ Interrupt Line 0x0A, Pin 0x01
+  Cap_Ptr=0x00000000  Retry/TRDY Timeout=0x00000000
+  PMC=0x00000000  PMCSR=0x00000000
+  DEVCTRL=0x00000000
+
+Internal Driver Information:
+  lc_ip_turbo_fs=0x229CBD0, ip_routecache=0x11(dfs=0/mdfs=0)
+  i82576_ds=0xC8AB6F8, registers=0xFEB80000
+  rx cache size=2048, rx cache end=1, rx_nobuffer=0
+  max_mtu=1528
+  ring sizes: RX=2048, TX=2048
+  rxring=0x8A79000, shadow=0xC96D2E8, head=1973, rx_buf_size=2048
+  txring=0x8A82000, shadow=0xC96F318, sw_tdh=1666, tail=1666
+  chip_state=2, pci_rev=3
+  tx_count=0, tx_ring_max=2048, tx_limited=0 (cur ring size 240)
+  rx_overrun=0, rx_seq=0, rx_no_enp=0, rx_discard=0
+  throttled=0, enabled=0, disabled=0, bypassed=0
+  reset=2(init=1, check=0, restart=1, pci=0), auto_restart=2
+  link_reset=0, tx_carrier_loss=0, fatal_tx_err=0
+  wait_for_last_tdt=0, rx_stuck=0
+  tx_stuck=0,  rx_max_spin=1,  rr_port_next=1
+
+Statistics:
+  CRC error        0             Symbol error     0           
+  Missed Packets   0             Excessive Coll   0           
+  Multiple Coll    0             Length Error     0           
+  Late Coll        0             Collision        0           
+  Defer            0             Receive Length   0           
+  XON RX           0           
+  XON TX           0             XOFF RX          0           
+  XOFF TX          0             FC RX Unsupport  0           
+  Packet RX (64)   23008         Packet RX (127)  76875       
+  Packet RX (255)  0             Packet RX (511)  0           
+  Packet RX (1023) 0             Packet RX (1522) 299402      
+  Good Packet RX   272696935     Broadcast RX     0           
+  Multicast RX     23057         Good Packet TX   6553218     
+  Good Octets RX.H 0             Good Octets RX.L 409857606   
+  Good Octets TX.H 0             Good Octets TX.L 831171888   
+  RX No Buff       0             RX Undersize     0           
+  RX Fragment      0             RX Oversize      0           
+  RX Octets High   0             RX Octets Low    409857606   
+  TX Octets High   0             TX Octets Low    831171888   
+  TX Packet        6553218       RX Packet        399285      
+  TX Broadcast     301           TX Multicast     6214634     
+  Packet TX (64)   282405        Packet TX (127)  5671170     
+  Packet TX (255)  1             Packet TX (511)  5           
+  Packet TX (1023) 0             Packet TX (1522) 299115      
+  TX No CSR        0           
+  RX Error Count   0             TCP Segmentation 0           
+  Host Trasmit Discarded packets by MAC Count  0           
+  Interrupt Assertion Count   0           
+  Receive Packets to Host Count 0           
+  Host Good Packets Transmitted Count 0           
+
+Registers:
+  Phy control                   : 0x00001140, FD, AutoEna, 1000Mbps
+  Phy status                    : 0x0000796D, UP, AutoDone
+  Phy ID1                       : 0x00000141
+  Phy ID2                       : 0x00000C20
+  Autoneg cap advertised        : 0x000005E1, CSMA/CD, 10M HD, 10M FD, 100M HD, 100M FD, Pause
+  Autoneg base page cap         : 0x000041E0
+  Autoneg expanded              : 0x00000000
+  Autoneg next page tx          : 0x00000000
+  Autoneg LP next page          : 0x00000000
+  1000T control                 : 0x00000E00, 1000 FD, Master
+  1000T status                  : 0x00003C00, LocRxOk, RemRxOk, Rem1000T-FD, Rem1000T-HD
+  Extended status               : 0x00000000
+  Port config                   : 0x00000360
+  Port status                   : 0x0000AC00, HD, UP, 100Mbps
+  Port control                  : 0x00000000
+  Link health                   : 0x00000000
+  1000T FIFO                    : 0x00000D60
+  Channel quality               : 0x00000000
+
+HW addr filter: 0xC973348
+
+  Chip address filter[0] 80000C8D.CF3E16FA
+  Chip address filter[1] 80000700.00C28001
+  Chip address filter[2] 8000CCCC.CC0C0001
+  Chip address filter[3] 80000200.00C28001
+  Chip address filter[4] 7FFFFFFF.00000000
+  Chip address filter[5] 7FFFFFFF.00000000
+  Chip address filter[6] 7FFFFFFF.00000000
+  Chip address filter[7] 7FFFFFFF.00000000
+  Chip address filter[8] 7FFFFFFF.00000000
+  Chip address filter[9] 7FFFFFFF.00000000
+  Chip address filter[10] 7FFFFFFF.00000000
+  Chip address filter[11
+'
+
+ GigabitEthernet0/2 
+
+  Service-policy output: VSL-Queuing-Policy
+
+    Class-map: VSL-MGMT-PACKETS (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match: access-group name VSL-MGMT
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 5% (50000 kbps)
+
+    Class-map: VSL-L2-CONTROL-PACKETS (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match: access-group name VSL-DOT1x
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-BPDU
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-CDP
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-LLDP
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-SSTP
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-GARP
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 5% (50000 kbps)
+
+    Class-map: VSL-L3-CONTROL-PACKETS (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match: access-group name VSL-IPV4-ROUTING
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-BFD
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-DHCP-CLIENT-TO-SERVER
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-DHCP-SERVER-TO-CLIENT
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-DHCP-SERVER-TO-SERVER
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match: access-group name VSL-IPV6-ROUTING
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 5% (50000 kbps)
+
+    Class-map: VSL-VOICE-VIDEO-TRAFFIC (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match:  dscp ef (46)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp cs4 (32)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp cs5 (40)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 30% (300000 kbps)
+
+    Class-map: VSL-SIGNALING-NETWORK-MGMT (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match:  dscp cs2 (16)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp cs3 (24)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp cs6 (48)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp cs7 (56)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 10% (100000 kbps)
+
+    Class-map: VSL-MULTIMEDIA-TRAFFIC (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match:  dscp af41 (34)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af42 (36)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af43 (38)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af31 (26)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af32 (28)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af33 (30)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af21 (18)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af22 (20)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Match:  dscp af23 (22)
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 20% (200000 kbps)
+
+    Class-map: VSL-DATA-PACKETS (match-any)  
+      1793491 packets, 503144412 bytes
+      5 minute offered rate 40000 bps, drop rate 0000 bps
+      Match: any 
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 20% (200000 kbps)
+
+    Class-map: class-default (match-any)  
+      0 packets, 0 bytes
+      5 minute offered rate 0000 bps, drop rate 0000 bps
+      Match: any 
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/0/0
+      (pkts output/bytes output) 0/0
+      bandwidth 5% (50000 kbps)

@@ -1,0 +1,1 @@
+get-service DNS | Foreach { start-service $_.name -PassThru; start -service $_.DependentServices -passthru}

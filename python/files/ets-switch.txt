@@ -3,6 +3,7 @@ la521
 ets-lp5-sg300
 ets-lp7-sg300
 ets-lp15-sg300
+ets-core
 etsoak-core-sw
 spf-sw1
 spf-sw2

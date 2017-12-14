@@ -1,0 +1,317 @@
+terminal length 0
+etsoak-core-sw#show version
+Cisco IOS Software, vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949) [mmen 101]
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Wed 22-Mar-17 08:38 by mmen
+
+
+ROM: Bootstrap program is IOSv
+
+etsoak-core-sw uptime is 1 week, 1 hour, 28 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios_l2-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv () processor (revision 1.0) with 673025K/111616K bytes of memory.
+Processor board ID 9YORESAUL75
+7 Virtual Ethernet interfaces
+9 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+0K bytes of ATA CompactFlash 2 (Read/Write)
+10080K bytes of ATA CompactFlash 3 (Read/Write)
+
+Configuration register is 0x101
+
+etsoak-core-sw#show config
+Using 2045 out of 262144 bytes, uncompressed size = 4166 bytes
+!
+! Last configuration change at 18:32:36 UTC Fri Dec 1 2017
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname etsoak-core-sw
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable password cisco
+!
+username cisco password 0 cisco
+aaa new-model
+!
+!
+aaa authentication login default local
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+vtp domain virl.lab
+vtp mode transparent
+!
+!
+!
+no ip domain-lookup
+ip domain-name ets.com
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 2
+ name ank_vlan2
+no cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Loopback
+ no ip address
+!
+interface GigabitEthernet0/0
+ description OOB management
+ no switchport
+ vrf forwarding Mgmt-intf
+ ip address 172.16.1.110 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ description to etsoak-rt1
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ description to spf-sw1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ description to spf-sw2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ description to etsoak-video-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ description to etsoak-ocr-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ description to etsoak-kalmar-app-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ description to etsoak-kalmar-db-srv
+ switchport access vlan 2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ password cisco
+ transport input telnet ssh
+!
+!
+end
+
+etsoak-core-sw#show logging
+Syslog logging: enabled (0 messages dropped, 2 messages rate-limited, 0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 138 messages logged, xml disabled,
+                     filtering disabled
+    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                     filtering disabled
+    Buffer logging:  level debugging, 140 messages logged, xml disabled,
+                    filtering disabled
+    Exception Logging: size (8192 bytes)
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+    Trap logging: level informational, 184 message lines logged
+        Logging Source-Interface:       VRF Name:
+
+Log Buffer (8192 bytes):
+ical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 05:58:32.400: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "Net Background", ipl= 0, pid= 53
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 1F4F217z
+*Dec  8 06:01:29.539: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 06:28:03.978: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "Net Background", ipl= 0, pid= 53
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 1F4F217z
+*Dec  8 06:36:05.507: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 06:37:03.731: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 07:28:55.082: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 08:52:12.180: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 08:55:15.694: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 09:17:33.831: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 09:21:14.018: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 10:57:26.464: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 13:26:52.911: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 13:53:04.113: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "Net Background", ipl= 0, pid= 53
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 1F4F217z
+*Dec  8 14:59:19.780: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 15:23:40.410: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 15:31:35.746: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 15:36:34.461: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 15:39:37.935: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 17:06:14.182: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 17:11:23.817: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 17:35:36.897: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901CBAz 902C1Bz 902BAFz 7E4E3Dz 22D3707z
+*Dec  8 18:57:06.841: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 19:28:36.846: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.4 on GigabitEthernet0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+*Dec  8 19:29:26.369: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.4 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+*Dec  8 19:29:28.692: %SYS-5-CONFIG_I: Configured from console by cisco on vty0 (172.16.1.100)
+*Dec  8 19:30:55.061: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 19:38:37.788: %SYS-5-CONFIG_I: Configured from console by cisco on console
+*Dec  8 19:43:58.143: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 19:45:08.326: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+*Dec  8 19:46:50.424: %LINK-2-INTVULN: In critical region with interrupt level=0, intfc=GigabitEthernet0/1 -Process= "IP Input", ipl= 0, pid= 126
+-Traceback= 1DDCD0Az 8108E5z 8E86D1z 8CEA4Dz 125AD3z 128670z 113E9Fz 11383Bz 8F3521z 8F7D53z 8F6D1Ez 901BFAz 902B1Bz 902AAFz 7E4E3Dz 22D3707z
+etsoak-core-sw#
